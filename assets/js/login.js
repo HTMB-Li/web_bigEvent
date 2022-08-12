@@ -18,9 +18,8 @@ $(function () {
     //通过 form.verify() 函数来自定义校验规则
     form.verify({
         // 自定义了一个叫做 pwd 校验规则
-         pwd : [
-            /^[\S]{6,12}$/
-            ,'密码必须6到12位，且不能出现空格'
+        pwd: [
+            /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
         ],
         // 校验两次密码是否一致的规则
         repwd: function (value) {
@@ -47,9 +46,13 @@ $(function () {
         $.post('/api/reguser', data, function (res) {
             // console.log(res.status);
             if (res.status !== 0) {
-                return layer.msg('用户名被占用，请更换其他用户名！', {icon: 5}); 
+                return layer.msg('用户名被占用，请更换其他用户名！', {
+                    icon: 5
+                });
             }
-            layer.msg('注册成功，请登录！', { icon: 6 });
+            layer.msg('注册成功，请登录！', {
+                icon: 6
+            });
             //模拟人的点击行为
             $('#link_login').click()
         })
@@ -67,18 +70,21 @@ $(function () {
             success: function (res) {
                 console.log(res.status)
                 if (res.status !== 0) {
-                    return layer.msg('登录失败！',{icon: 5})
+                    return layer.msg('登录失败！', {
+                        icon: 5
+                    })
                 }
-                layer.msg('登录成功！', { icon: 6 })
+                layer.msg('登录成功！', {
+                    icon: 6
+                })
                 //将登陆成功得到的 token 字符串 ，保存到localStorage 中
-                localStorage.setItem('token',res.token)
+                localStorage.setItem('token', res.token)
                 console.log(res.token)
                 //跳转到后台主页
-                location.href = '/index.html'
+                location.href = 'index.html'
             }
         })
     })
-    
+
 
 })
-
